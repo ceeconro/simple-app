@@ -1,6 +1,5 @@
 pipeline {
    agent any
-
     environment {
        // use your actual issuer URL here and NOT the placeholder {yourOktaDomain}
        OKTA_OAUTH2_ISSUER           = 'https://dev-793677.okta.com/oauth2/default'
@@ -14,10 +13,10 @@ pipeline {
             git 'https://github.com/ceeconro/simple-app.git'
 
             // Run Maven on a Unix agent.
-            //sh "mvn -Dmaven.test.failure.ignore=true clean package"
+            sh "mvn -Dmaven.test.failure.ignore=true clean package"
 
             // To run Maven on a Windows agent, use
-            bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            // bat "mvn -Dmaven.test.failure.ignore=true clean package"
          }
 
          post {
