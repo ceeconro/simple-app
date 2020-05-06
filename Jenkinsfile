@@ -1,16 +1,15 @@
 pipeline {
    agent any
+
+   tools {
+      // Install the Maven version configured as "M3" and add it to the path.
+      maven "M3"
+   }
     environment {
        // use your actual issuer URL here and NOT the placeholder {yourOktaDomain}
        OKTA_OAUTH2_ISSUER           = 'https://dev-793677.okta.com/oauth2/default'
        OKTA_OAUTH2_CLIENT_ID        = credentials('OKTA_OAUTH2_CLIENT_ID')
        OKTA_OAUTH2_CLIENT_SECRET    = credentials('OKTA_OAUTH2_CLIENT_SECRET')
-   }
-   agent {
-           docker {
-               image 'maven:3-alpine'
-               args '-v /root/.m2:/root/.m2'
-           }
    }
    stages {
       stage('Build') {
